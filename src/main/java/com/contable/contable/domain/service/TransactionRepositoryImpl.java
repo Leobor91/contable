@@ -19,13 +19,13 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     @Override
     public List<TransactionDTO> findAll() {
         return jpaTransactionRepository.findAll().stream()
-                .map(costEntity -> TransactionDTO.builder()
-                        .id(costEntity.getId())
-                        .description(costEntity.getDescription())
-                        .amount(costEntity.getAmount())
-                        .date(costEntity.getDate())
-                        .month(costEntity.getMonth())
-                        .category(costEntity.getCategory())
+                .map(transactionEntity -> TransactionDTO.builder()
+                        .id(transactionEntity.getId())
+                        .description(transactionEntity.getDescription())
+                        .amount(transactionEntity.getAmount())
+                        .date(transactionEntity.getDate())
+                        .month(transactionEntity.getMonth())
+                        .category(transactionEntity.getCategory())
                         .build())
                 .collect(Collectors.toList());
     }
@@ -33,13 +33,13 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     @Override
     public List<TransactionDTO> findByMonth(Integer month) {
         return jpaTransactionRepository.findByMonth(month).stream()
-                .map(costDTO -> TransactionDTO.builder()
-                        .id(costDTO.getId())
-                        .description(costDTO.getDescription())
-                        .amount(costDTO.getAmount())
-                        .date(costDTO.getDate())
-                        .month(costDTO.getMonth())
-                        .category(costDTO.getCategory())
+                .map(transactionDTO -> TransactionDTO.builder()
+                        .id(transactionDTO.getId())
+                        .description(transactionDTO.getDescription())
+                        .amount(transactionDTO.getAmount())
+                        .date(transactionDTO.getDate())
+                        .month(transactionDTO.getMonth())
+                        .category(transactionDTO.getCategory())
                         .build())
                 .toList();
     }
@@ -47,13 +47,13 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     @Override
     public Mono<TransactionDTO> findById(String id) {
         return jpaTransactionRepository.findById(id)
-                .map(costDTO -> TransactionDTO.builder()
-                        .id(costDTO.getId())
-                        .description(costDTO.getDescription())
-                        .amount(costDTO.getAmount())
-                        .date(costDTO.getDate())
-                        .month(costDTO.getMonth())
-                        .category(costDTO.getCategory())
+                .map(transactionDTO -> TransactionDTO.builder()
+                        .id(transactionDTO.getId())
+                        .description(transactionDTO.getDescription())
+                        .amount(transactionDTO.getAmount())
+                        .date(transactionDTO.getDate())
+                        .month(transactionDTO.getMonth())
+                        .category(transactionDTO.getCategory())
                         .build());
     }
 

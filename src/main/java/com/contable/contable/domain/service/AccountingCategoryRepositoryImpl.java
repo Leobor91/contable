@@ -7,6 +7,8 @@ import com.contable.contable.infrastructure.adapter.out.JpaAccountingCategoryRep
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,22 +34,15 @@ public class AccountingCategoryRepositoryImpl implements AccountingCategoryRepos
                         .build())
                 .collect(Collectors.toList());
     }
+@Override
+public Mono<AccountingCategoryDTO> findByName(String name) {
+    return jpaAccountingCategoryRepository.findByName(name);
+
+}
 
     @Override
-    public Optional<AccountingCategoryDTO> findByName(String name) {
-        return jpaAccountingCategoryRepository.findByName(name)
-                .map(accountingCategoryEntity -> AccountingCategoryDTO.builder()
-                        .id(accountingCategoryEntity.getId())
-                        .name(accountingCategoryEntity.getName())
-                        .description(accountingCategoryEntity.getDescription())
-                        .icon(accountingCategoryEntity.getIcon())
-                        .color(accountingCategoryEntity.getColor())
-                        .type(accountingCategoryEntity.getType())
-                        .build());
-    }
-
-    @Override
-    public Optional<AccountingCategoryDTO> save(AccountingCategoryDTO accountingCategoryDTO) {
+    public Mono<AccountingCategoryDTO> save(AccountingCategoryDTO accountingCategoryDTO) {
         return jpaAccountingCategoryRepository.save(accountingCategoryDTO);
+
     }
 }

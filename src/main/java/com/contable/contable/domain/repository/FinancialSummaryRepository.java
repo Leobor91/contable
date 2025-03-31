@@ -1,16 +1,17 @@
 package com.contable.contable.domain.repository;
 
 import com.contable.contable.application.dto.FinancialSummaryDTO;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 public interface FinancialSummaryRepository {
-    Double getTotalEntriesByMonth(Integer month);
-    Double getTotalExitsByMonth(Integer month);
-    Double getTotalEntriesByYear(Integer year);
-    Double getTotalExitsByYear(Integer year);
-    FinancialSummaryDTO findById(String id);
+    Mono<Double> getTotalEntriesByMonth(Integer month);
+    Mono<Double> getTotalExitsByMonth(Integer month);
+    Mono<Double> getTotalEntriesByYear(Integer year);
+    Mono<Double> getTotalExitsByYear(Integer year);
+    Mono<FinancialSummaryDTO>  findById(String id);
     List<FinancialSummaryDTO> findAll();
-    FinancialSummaryDTO findByMonth(Integer month);
+    Mono<FinancialSummaryDTO> findByMonth(Integer month);
 }

@@ -5,9 +5,9 @@ import com.contable.contable.domain.repository.TransactionRepository;
 import com.contable.contable.infrastructure.adapter.out.JpaTransactionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,7 +45,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
-    public Optional<TransactionDTO> findById(String id) {
+    public Mono<TransactionDTO> findById(String id) {
         return jpaTransactionRepository.findById(id)
                 .map(costDTO -> TransactionDTO.builder()
                         .id(costDTO.getId())
@@ -58,14 +58,12 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
-    public Optional<TransactionDTO> save(TransactionDTO transactionDTO) {
-
+    public Mono<TransactionDTO> save(TransactionDTO transactionDTO) {
         return jpaTransactionRepository.save(transactionDTO);
     }
 
     @Override
-    public Optional<TransactionDTO> deleteById(String id) {
-
+    public Mono<TransactionDTO> deleteById(String id) {
         return jpaTransactionRepository.deleteById(id);
     }
 }
